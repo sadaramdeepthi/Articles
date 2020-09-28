@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     loading: false,
   };
-
+  // fetches the articles from API
   componentDidMount = () => {
     this.props.fetchArticles();
   };
@@ -20,12 +20,10 @@ class App extends Component {
         <Navbar className="mb-3" expand="lg" bg="primary">
           <Navbar.Brand>Articles</Navbar.Brand>
         </Navbar>
-        {!this.state.loading ? (
+        {this.props.articles.length > 0 ? (
           this.props.articles.map((article) => <Article article={article} />)
         ) : (
-          <Spinner animation="border">
-            <span>Loading....</span>
-          </Spinner>
+          <Spinner animation="border" />
         )}
       </div>
     );

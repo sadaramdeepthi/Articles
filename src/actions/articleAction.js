@@ -6,7 +6,7 @@ import {
 } from "./types";
 import axios from "axios";
 
-// fetches data from API
+// fetches article from API
 export const fetchArticles = () => async (dispatch) => {
   let data = await fetch(
     "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
@@ -50,6 +50,7 @@ export const onRead = (id) => ({
   payload: id,
 });
 
+// fetching comments from articles array in kids
 export const fetchComments = (article) => async (dispatch) => {
   let prs = article.kids.map((kid) =>
     axios(`https://hacker-news.firebaseio.com/v0/item/${kid}.json?print=pretty`)
